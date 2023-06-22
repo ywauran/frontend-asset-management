@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-secondary {
+  @apply bg-[#FF0000];
+}
+
+.label__input {
+  text-align: start;
+}
+
+.container > h1 {
+  color: #fff;
+}
