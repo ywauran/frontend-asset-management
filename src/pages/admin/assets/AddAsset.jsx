@@ -3,7 +3,7 @@ import axios from "axios";
 
 const AddAsset = ({ fetchData }) => {
   const [itemName, setItemName] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [serialNumber, setSerialNumber] = useState("");
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null);
 
@@ -17,14 +17,14 @@ const AddAsset = ({ fetchData }) => {
 
     const formData = new FormData();
     formData.append("item_name", itemName);
-    formData.append("quantity", quantity);
+    formData.append("serial_number", serialNumber);
     formData.append("file", file);
 
     try {
       await axios.post("http://localhost:5000/asset", formData);
       fetchData();
       setItemName("");
-      setQuantity(0);
+      serialNumber("");
       setFile(null);
       fileInputRef.current.value = null; // Reset the file input value
     } catch (error) {
@@ -54,15 +54,15 @@ const AddAsset = ({ fetchData }) => {
         </div>
         <div className="flex flex-col space-y-4 w-96">
           <label htmlFor="quantity" className="label__input">
-            Jumlah
+            Nomor Seri
           </label>
           <input
-            type="number"
-            id="quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
+            type="text"
+            id="serialNumber"
+            value={serialNumber}
+            onChange={(e) => setSerialNumber(e.target.value)}
             className="input input-bordered"
-            placeholder="B"
+            placeholder="K1234"
             required
           />
         </div>

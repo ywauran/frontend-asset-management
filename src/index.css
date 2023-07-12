@@ -13,3 +13,11 @@
 .container > h1 {
   color: #fff;
 }
+
+.pagination-button {
+  @apply btn btn-sm;
+}
+
+.pagination {
+  @apply flex items-center justify-center mx-3;
+}

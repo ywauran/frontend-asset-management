@@ -3,6 +3,15 @@ import axios from "axios";
 import ModalDeleteUser from "../../../components/modal/ModalDeleteUser";
 import EditUser from "./EditUser";
 import AddUser from "./AddUser";
+import {
+  MdKeyboardArrowLeft,
+  MdKeyboardArrowRight,
+  MdAddCircleOutline,
+  MdClose,
+  MdModeEditOutline,
+  MdOutlineDeleteOutline,
+  MdSearch,
+} from "react-icons/md";
 
 const DataUser = () => {
   const [data, setData] = useState([]);
@@ -98,7 +107,7 @@ const DataUser = () => {
             className="input input-bordered"
           />
           <button type="submit" className="px-4 rounded-md btn-primary">
-            Search
+            <MdSearch />
           </button>
         </form>
       </div>
@@ -108,14 +117,14 @@ const DataUser = () => {
             onClick={() => setOpenAdd(!openAdd)}
             className="bg-[#27AE60] rounded-md text-[#FFFFFF] py-2 px-4"
           >
-            Tutup
+            <MdClose />
           </button>
         ) : (
           <button
             onClick={() => setOpenAdd(!openAdd)}
             className="bg-[#27AE60] rounded-md text-[#FFFFFF] py-2 px-4"
           >
-            Tambah Data
+            <MdAddCircleOutline />
           </button>
         )}
       </div>
@@ -151,14 +160,14 @@ const DataUser = () => {
                     onClick={() => openModalEditData(item)}
                     className="px-4 py-2 rounded-md btn-primary"
                   >
-                    Perbarui
+                    <MdModeEditOutline />
                   </button>
 
                   <button
                     onClick={() => openModalDeleteData(item)}
                     className="px-4 py-2 rounded-md btn-secondary"
                   >
-                    Hapus
+                    <MdOutlineDeleteOutline />
                   </button>
                 </td>
               </tr>
@@ -172,7 +181,7 @@ const DataUser = () => {
           onClick={handlePrevPage}
           disabled={currentPage === 1}
         >
-          Prev
+          <MdKeyboardArrowLeft />
         </button>
         <ul className="pagination">
           {Array.from({ length: totalPages }, (_, index) => index + 1).map(
@@ -194,7 +203,7 @@ const DataUser = () => {
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
         >
-          Next
+          <MdKeyboardArrowRight />
         </button>
       </div>
       <ModalDeleteUser

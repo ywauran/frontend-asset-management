@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const EditAsset = ({ openModal, setOpenModal, data, fetchData }) => {
-  const [itemName, setItemName] = useState(data?.itemName || "");
-  const [quantity, setQuantity] = useState(data?.quantity || 0);
+  const [itemName, setItemName] = useState(data?.item_name || "");
+  const [serialNumber, setSerialNumber] = useState(data?.serial_number || "");
   const [file, setFile] = useState(data?.url || "");
 
   const loadImage = (e) => {
@@ -14,14 +14,14 @@ const EditAsset = ({ openModal, setOpenModal, data, fetchData }) => {
   const editData = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("itemName", itemName);
-    formData.append("quantity", quantity);
+    formData.append("item_name", itemName);
+    formData.append("serial_number", serialNumber);
     formData.append("file", file);
     try {
       await axios.patch(`http://localhost:5000/asset/${data.uuid}`, formData);
       fetchData();
       setItemName("");
-      setQuantity(0);
+      setSerialNumber("");
       setFile("");
       setOpenModal(false);
     } catch (error) {
@@ -42,7 +42,7 @@ const EditAsset = ({ openModal, setOpenModal, data, fetchData }) => {
           className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-x-hidden overflow-y-auto"
         >
           <div className="relative w-full max-w-md">
-            <div className="relative bg-white rounded-lg shadow">
+            <div className="relative bg-[#FFF] rounded-lg shadow">
               <button
                 onClick={closeModal}
                 type="button"
@@ -77,21 +77,21 @@ const EditAsset = ({ openModal, setOpenModal, data, fetchData }) => {
                         value={itemName}
                         onChange={(e) => setItemName(e.target.value)}
                         className="input input-bordered"
-                        placeholder="A"
+                        placeholder=""
                         required
                       />
                     </div>
                     <div className="flex flex-col">
-                      <label htmlFor="quantity" className="label__input">
-                        Jumlah
+                      <label htmlFor="serialNumber" className="label__input">
+                        Nomor Seri
                       </label>
                       <input
-                        type="number"
-                        id="quantity"
-                        value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
+                        type="text"
+                        id="serialNumber"
+                        value={serialNumber}
+                        onChange={(e) => setSerialNumber(e.target.value)}
                         className="input input-bordered"
-                        placeholder="Huruf A"
+                        placeholder=""
                         required
                       />
                     </div>

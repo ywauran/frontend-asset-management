@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMe, LogOut, reset } from "../../features/authSlice";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard, MdDataset } from "react-icons/md";
-import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUser, AiFillDatabase } from "react-icons/ai";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import Header from "../../components/shared/Header";
 import DataAsset from "./assets/DataAsset";
 import Dashboard from "../user/Dashboard";
 import DataUser from "./user/DataUser";
+import DataLoan from "./loan/DataLoan";
 
 const MainAdmin = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const MainAdmin = () => {
 
   useEffect(() => {
     if (isError) {
-      navigate("/");
+      navigate("/login");
     }
   }, [isError, navigate]);
 
@@ -36,19 +37,19 @@ const MainAdmin = () => {
 
   const menus = [
     {
-      name: "Dashboard",
-      link: "/",
-      icon: MdOutlineDashboard,
-    },
-    {
-      name: "Data Asset",
+      name: "Data Aset",
       link: "/data",
       icon: MdDataset,
     },
     {
-      name: "Data user",
+      name: "Data Pengguna",
       link: "/users",
       icon: AiOutlineUser,
+    },
+    {
+      name: "Data Peminjaman Barang",
+      link: "/loan",
+      icon: AiFillDatabase,
     },
   ];
 
@@ -79,7 +80,7 @@ const MainAdmin = () => {
                 <div>{React.createElement(menu.icon, { size: "20" })}</div>
                 <h2
                   style={{
-                    transitionDelay: `${i + 3}00ms`,
+                    transitionDelay: `300ms`,
                   }}
                   className={`whitespace-pre duration-500 ${
                     !open && "opacity-0 translate-x-28 overflow-hidden"
@@ -104,18 +105,18 @@ const MainAdmin = () => {
                 <RiLogoutBoxLine size="20" />
               </div>
               <h2
-                className={`whitespace-pre duration-500 ${
+                className={`whitespace-pre duration-300 ${
                   !open && "opacity-0 translate-x-28 overflow-hidden"
                 }`}
               >
-                Logout
+                Keluar
               </h2>
               <h2
                 className={`${
                   open && "hidden"
                 } absolute z-50 left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
               >
-                Logout
+                Keluar
               </h2>
             </button>
           </div>
@@ -128,6 +129,7 @@ const MainAdmin = () => {
             <Route path="/" element={<Dashboard />} />
             <Route path="/data" element={<DataAsset />} />
             <Route path="/users" element={<DataUser />} />
+            <Route path="/loan" element={<DataLoan />} />
           </Routes>
         </div>
       </div>
@@ -150,7 +152,7 @@ const LogoutModal = ({ openModalLogout, onLogout, onClose }) => {
         openModalLogout ? "block" : "hidden"
       }`}
     >
-      <div className="p-4 bg-white rounded-lg shadow">
+      <div className="p-4 bg-[#FFFFFF] rounded-lg shadow">
         <div className="flex items-start justify-center pb-4">
           <h3 className="text-xl font-semibold text-gray-900">Keluar</h3>
         </div>

@@ -58,7 +58,7 @@ const AddUser = ({ fetchData }) => {
       </div>
       <div className="flex flex-col space-y-4 w-96">
         <label htmlFor="username" className="label__input">
-          Username
+          Nama Pengguna
         </label>
         <input
           type="text"
@@ -72,7 +72,7 @@ const AddUser = ({ fetchData }) => {
       </div>
       <div className="flex flex-col space-y-4 w-96">
         <label htmlFor="password" className="label__input">
-          Password
+          Kata Sandi
         </label>
         <input
           type="password"
@@ -86,7 +86,7 @@ const AddUser = ({ fetchData }) => {
       </div>
       <div className="flex flex-col space-y-4 w-96">
         <label htmlFor="fileSubmission" className="label__input">
-          File
+          Gambar
         </label>
         <input
           type="file"

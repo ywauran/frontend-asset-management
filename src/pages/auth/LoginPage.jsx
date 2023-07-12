@@ -14,15 +14,16 @@ const LoginPage = () => {
   useEffect(() => {
     if (user || isSuccess) {
       if (user?.role === "admin") {
-        navigate("/");
+        navigate("/data");
       } else if (user?.role === "guest") {
-        navigate("/pages/dashboard");
+        navigate(`/pages/beranda/${user?.id}`);
       } else {
         navigate("/login");
       }
     }
     dispatch(reset());
   }, [user, isSuccess, dispatch, navigate]);
+
   const handlerLoginSubmit = (e) => {
     e.preventDefault();
     dispatch(LoginUser({ username, password }));
@@ -32,14 +33,12 @@ const LoginPage = () => {
       <div className="flex flex-col items-center justify-center px-32 py-10 space-y-2 rounded-md shadow-md">
         <img src={Logo} alt="Logo" />
 
-        <h1 className="text-xl font-bold text-center">
-          Login To Your Account!
-        </h1>
+        <h1 className="text-xl font-bold text-center">Masuk</h1>
 
         <form className="mt-4" onSubmit={handlerLoginSubmit}>
           <div>
             <label htmlFor="email" className="font-semibold">
-              Email
+              Nama Pengguna
             </label>
             <input
               type="text"
@@ -52,7 +51,7 @@ const LoginPage = () => {
           </div>
           <div>
             <label htmlFor="password" className="font-semibold">
-              Password
+              Kata Sandi
             </label>
             <input
               type="password"
@@ -65,7 +64,7 @@ const LoginPage = () => {
           </div>
 
           <button type="submit" className="w-full mt-5 btn btn-primary">
-            Login
+            Masuk
           </button>
         </form>
       </div>
